@@ -51,7 +51,6 @@ export type NoteAction =
     | UnarchiveNoteAction;
 
 export interface SummaryState {
-    notes: Note[];
     activeCategories: Record<string, number>;
     archivedCategories: Record<string, number>;
 }
@@ -62,6 +61,7 @@ export enum SummaryActionType {
 
 interface UpdateSummaryAction {
     type: SummaryActionType.UPDATE_SUMMARY;
+    notes: Note[];
 }
 
 export type SummaryAction = UpdateSummaryAction;
@@ -69,4 +69,4 @@ export type SummaryAction = UpdateSummaryAction;
 export interface RootState {
     notesState: NotesState;
     summaryState: SummaryState;
-}
+}   

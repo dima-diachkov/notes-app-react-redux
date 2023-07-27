@@ -1,18 +1,18 @@
 import React from 'react';
-import Table from './Table';
 import { SummaryState } from '../types/types';
+import Table from './Table';
 
 interface SummaryTableProps {
   summaryData: SummaryState;
 }
 
 const SummaryTable: React.FC<SummaryTableProps> = ({ summaryData }) => {
-  const tableHeaders = ['Category', 'Active Notes Count', 'Archived Notes Count'];
+  const tableHeaders = ['Note Category', 'Active', 'Archived'];
 
-  const tableData = Object.entries(summaryData.activeCategories).map(([category, count]) => ({
-    'Category': category,
-    'Active Notes Count': count,
-    'Archived Notes Count': summaryData.archivedCategories[category] || 0,
+  const tableData = ['Task', 'Random Thought', 'Idea'].map((category) => ({
+    'Note Category': category,
+    'Active': summaryData.activeCategories[category.toLowerCase()] || 0,
+    'Archived': summaryData.archivedCategories[category.toLowerCase()] || 0,
   }));
 
   return <Table headers={tableHeaders} data={tableData} />;

@@ -1,25 +1,24 @@
-import { SummaryAction, SummaryActionType, SummaryState } from '../types/types';
+import { SummaryAction, SummaryActionType, SummaryState, RootState } from '../types/types';
 
 const initialState: SummaryState = {
   activeCategories: {},
   archivedCategories: {},
-  notes: [],
 };
 
-const calculateSummary = (notes: SummaryState['notes'], state: SummaryState): SummaryState => {
+const calculateSummary = (notes: RootState['notesState']['notes']): SummaryState => {
   const activeCategories: Record<string, number> = {};
   const archivedCategories: Record<string, number> = {};
 
   for (const note of notes) {
+    const category = note.category.toLowerCase();
     if (!note.archived) {
-      activeCategories[note.category] = (activeCategories[note.category] || 0) + 1;
+      activeCategories[category] = (activeCategories[category] || 0) + 1;
     } else {
-      archivedCategories[note.category] = (archivedCategories[note.category] || 0) + 1;
+      archivedCategories[category] = (archivedCategories[category] || 0) + 1;
     }
   }
 
   return {
-    ...state,
     activeCategories,
     archivedCategories,
   };
@@ -28,7 +27,7 @@ const calculateSummary = (notes: SummaryState['notes'], state: SummaryState): Su
 const summaryReducer = (state = initialState, action: SummaryAction): SummaryState => {
   switch (action.type) {
     case SummaryActionType.UPDATE_SUMMARY:
-      const updatedSummary = calculateSummary(state.notes, state);
+      const updatedSummary = calculateSummary(action.notes);
       return updatedSummary;
     default:
       return state;

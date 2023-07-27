@@ -1,4 +1,4 @@
-import { ActionType, Note, NoteAction } from '../types/types';
+import { ActionType, Note, NoteAction, SummaryActionType, SummaryAction } from '../types/types';
 
 export const addNote = (note: Note): NoteAction => ({
   type: ActionType.ADD_NOTE,
@@ -23,4 +23,9 @@ export const archiveNote = (noteId: number): NoteAction => ({
 export const unarchiveNote = (noteId: number): NoteAction => ({
   type: ActionType.UNARCHIVE_NOTE,
   payload: noteId,
+});
+
+export const updateSummary = (notes: Note[]): SummaryAction => ({
+  type: SummaryActionType.UPDATE_SUMMARY,
+  notes,
 });

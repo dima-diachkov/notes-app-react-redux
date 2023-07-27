@@ -1,4 +1,3 @@
-// store.ts
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import noteReducer from './reducers/noteReducer';
 import summaryReducer from './reducers/summaryReducer';

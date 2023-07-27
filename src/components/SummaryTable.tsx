@@ -1,4 +1,3 @@
-// components/SummaryTable.tsx
 import React from 'react';
 import Table from './Table';
 import { SummaryState } from '../types/types';

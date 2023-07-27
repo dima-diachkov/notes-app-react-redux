@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addNote } from '../actions/noteActions';
 import { Note } from '../types/types';
+import { formatTime } from '../utils';
 
 interface NoteFormProps {
 }
@@ -16,7 +17,7 @@ const NoteForm: React.FC<NoteFormProps> = () => {
 
     const newNote: Note = {
       id: Date.now(),
-      time: new Date().toLocaleString(),
+      time: formatTime(new Date()),
       content,
       category,
       archived: false,

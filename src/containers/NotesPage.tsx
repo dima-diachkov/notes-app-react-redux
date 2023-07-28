@@ -16,11 +16,13 @@ const NotesPage: React.FC = () => {
   }, [notes, dispatch]);
 
   return (
-    <div>
+    <div className="app-container">
       <h1>Notes App</h1>
-      <NoteForm />
-      <NoteTable notes={notes} />
-      <SummaryTable summaryData={summaryData} />
+      <div className="note-page-content">
+        <NoteForm />
+        <NoteTable notes={notes} />
+        <SummaryTable summaryData={summaryData} />
+      </div>
     </div>
   );
 };

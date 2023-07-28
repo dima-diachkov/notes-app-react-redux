@@ -15,7 +15,12 @@ const SummaryTable: React.FC<SummaryTableProps> = ({ summaryData }) => {
     'Archived': summaryData.archivedCategories[category.toLowerCase()] || 0,
   }));
 
-  return <Table headers={tableHeaders} data={tableData} />;
+  return (
+    <div className="summary-table">
+      <h2>Summary Table</h2>
+      <Table headers={tableHeaders} data={tableData} />
+    </div>
+  );
 };
 
 export default SummaryTable;

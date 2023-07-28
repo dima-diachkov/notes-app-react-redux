@@ -15,7 +15,6 @@ const EditNoteDialog: React.FC<EditNoteDialogProps> = ({ isOpen, onClose, initia
   const [category, setCategory] = useState('');
 
   useEffect(() => {
-    // Set the form state when initialNote changes
     if (initialNote) {
       setContent(initialNote.content);
       setCategory(initialNote.category);
@@ -26,14 +25,12 @@ const EditNoteDialog: React.FC<EditNoteDialogProps> = ({ isOpen, onClose, initia
     e.preventDefault();
 
     if (initialNote) {
-      // Create a new note object with the updated values
       const updatedNote: Note = {
         ...initialNote,
         content,
         category,
       };
 
-      // Dispatch the action to update the note in the Redux store
       dispatch(editNote(updatedNote));
       onClose();
     }
@@ -64,7 +61,6 @@ const EditNoteDialog: React.FC<EditNoteDialogProps> = ({ isOpen, onClose, initia
                 <option value="Task">Task</option>
                 <option value="Random Thought">Random Thought</option>
                 <option value="Idea">Idea</option>
-                {/* Add more categories here as needed */}
               </select>
             </div>
             <div className="modal-footer">

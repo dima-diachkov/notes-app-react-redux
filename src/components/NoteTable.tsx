@@ -38,50 +38,60 @@ const NoteTable: React.FC<NoteTableProps> = ({ notes }) => {
     setShowEditDialog(false);
   };
 
+  const editButton = (note: Note) => (
+    <button key="edit" onClick={() => handleEditButtonClick(note)}>Edit</button>
+  );
+
+  const removeButton = (noteId: number) => (
+    <button key="remove" onClick={() => handleRemoveNote(noteId)}>Remove</button>
+  );
+
+  const archiveButton = (noteId: number) => (
+    <button key="archive" onClick={() => handleArchiveNote(noteId)}>Archive</button>
+  );
+
+  const unarchiveButton = (noteId: number) => (
+    <button key="unarchive" onClick={() => handleUnarchiveNote(noteId)}>Unarchive</button>
+  );
+
+  const generateNoteData = (note: Note, actions: React.ReactNode[]) => {
+    const mentionedDates = note.content.match(/\d{1,2}\/\d{1,2}\/\d{4}/g) || [];
+
+    return {
+      'Time of Creation': note.time,
+      'Note Content': note.content,
+      'Note Category': note.category,
+      'Mentioned Dates': mentionedDates.join(', '),
+      'Actions': (
+        <div>
+          {actions.map((action, index) => (
+            <React.Fragment key={index}>{action}</React.Fragment>
+          ))}
+        </div>
+      ),
+    };
+  };
+
+  const activeNotesData = activeNotes.map((note) =>
+    generateNoteData(note, [editButton(note), removeButton(note.id), archiveButton(note.id)])
+  );
+
+  const archivedNotesData = archivedNotes.map((note) =>
+    generateNoteData(note, [editButton(note), removeButton(note.id), unarchiveButton(note.id)])
+  );
+
   return (
     <div>
       <h2>Active Notes</h2>
       <Table
         headers={['Time of Creation', 'Note Content', 'Note Category', 'Mentioned Dates', 'Actions']}
-        data={activeNotes.map((note) => {
-          const mentionedDates = note.content.match(/\d{1,2}\/\d{1,2}\/\d{4}/g) || [];
-
-          return {
-            'Time of Creation': note.time,
-            'Note Content': note.content,
-            'Note Category': note.category,
-            'Mentioned Dates': mentionedDates.join(', '),
-            'Actions': (
-              <div>
-                <button onClick={() => handleEditButtonClick(note)}>Edit</button>
-                <button onClick={() => handleRemoveNote(note.id)}>Remove</button>
-                <button onClick={() => handleArchiveNote(note.id)}>Archive</button>
-              </div>
-            ),
-          };
-        })}
+        data={activeNotesData}
       />
 
       <h2>Archived Notes</h2>
       <Table
         headers={['Time of Creation', 'Note Content', 'Note Category', 'Mentioned Dates', 'Actions']}
-        data={archivedNotes.map((note) => {
-          const mentionedDates = note.content.match(/\d{1,2}\/\d{1,2}\/\d{4}/g) || [];
-
-          return {
-            'Time of Creation': note.time,
-            'Note Content': note.content,
-            'Note Category': note.category,
-            'Mentioned Dates': mentionedDates.join(', '),
-            'Actions': (
-              <div>
-                <button onClick={() => handleEditButtonClick(note)}>Edit</button>
-                <button onClick={() => handleRemoveNote(note.id)}>Remove</button>
-                <button onClick={() => handleUnarchiveNote(note.id)}>Unarchive</button>
-              </div>
-            ),
-          };
-        })}
+        data={archivedNotesData}
       />
 
       <EditNoteDialog

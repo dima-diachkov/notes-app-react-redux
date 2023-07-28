@@ -5,6 +5,7 @@ import { Note } from '../types/types';
 import { removeNote, archiveNote, unarchiveNote, editNote, addNote } from '../actions/noteActions';
 import EditNoteDialog from './CreateEditNoteDialog';
 import NoteForm from './NoteForm';
+import { STRINGS, REGEX_PATTERNS, TABLE_HEADERS } from '../constants';
 
 interface NoteTableProps {
   notes: Note[];
@@ -48,23 +49,23 @@ const NoteTable: React.FC<NoteTableProps> = ({ notes }) => {
     handleCloseEditDialog();
   };
   const editButton = (note: Note) => (
-    <button key="edit" onClick={() => handleEditButtonClick(note)}>Edit</button>
+    <button key="edit" onClick={() => handleEditButtonClick(note)}>{STRINGS.EDIT_BUTTON_TEXT}</button>
   );
 
   const removeButton = (noteId: number) => (
-    <button key="remove" onClick={() => handleRemoveNote(noteId)}>Remove</button>
+    <button key="remove" onClick={() => handleRemoveNote(noteId)}>{STRINGS.REMOVE_BUTTON_TEXT}</button>
   );
 
   const archiveButton = (noteId: number) => (
-    <button key="archive" onClick={() => handleArchiveNote(noteId)}>Archive</button>
+    <button key="archive" onClick={() => handleArchiveNote(noteId)}>{STRINGS.ARCHIVE_BUTTON_TEXT}</button>
   );
 
   const unarchiveButton = (noteId: number) => (
-    <button key="unarchive" onClick={() => handleUnarchiveNote(noteId)}>Unarchive</button>
+    <button key="unarchive" onClick={() => handleUnarchiveNote(noteId)}>{STRINGS.UNARCHIVE_BUTTON_TEXT}</button>
   );
 
   const generateNoteData = (note: Note, actions: React.ReactNode[]) => {
-    const mentionedDates = note.content.match(/\d{1,2}\/\d{1,2}\/\d{4}/g) || [];
+    const mentionedDates = note.content.match(REGEX_PATTERNS.DATE_REGEX) || [];
 
     return {
       'Time of Creation': note.time,
@@ -93,13 +94,13 @@ const NoteTable: React.FC<NoteTableProps> = ({ notes }) => {
     <div>
       <h2>Active Notes</h2>
       <Table
-        headers={['Time of Creation', 'Note Content', 'Note Category', 'Mentioned Dates', 'Actions']}
+        headers={TABLE_HEADERS}
         data={activeNotesData}
       />
       <NoteForm />
       <h2>Archived Notes</h2>
       <Table
-        headers={['Time of Creation', 'Note Content', 'Note Category', 'Mentioned Dates', 'Actions']}
+        headers={TABLE_HEADERS}
         data={archivedNotesData}
       />
 

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Note } from '../types/types';
 import { editNote } from '../actions/noteActions';
 import { formatTime } from '../utils';
+import { STRINGS } from '../constants';
 
 interface CreateEditNoteDialogProps {
   isOpen: boolean;
@@ -69,7 +70,7 @@ const CreateEditNoteDialog: React.FC<CreateEditNoteDialogProps> = ({
     <div className="modal-overlay">
       <div className="modal">
         <div className="modal-header">
-          <h2>{initialNote ? 'Edit Note' : 'Create New Note'}</h2>
+          <h2>{initialNote ? STRINGS.EDIT_NOTE_TITLE : STRINGS.CREATE_NOTE_TITLE}</h2>
           <button className="modal-close" onClick={onClose}>
             &times;
           </button>
@@ -98,9 +99,9 @@ const CreateEditNoteDialog: React.FC<CreateEditNoteDialogProps> = ({
             </select>
           </div>
           <div className="modal-footer">
-            <button type="submit">{initialNote ? 'Save' : 'Add Note'}</button>
+            <button type="submit">{initialNote ? STRINGS.SAVE_BUTTON_TEXT : STRINGS.ADD_NOTE_BUTTON_TEXT}</button>
             <button type="button" onClick={onClose}>
-              Cancel
+              {STRINGS.CANCEL_BUTTON_TEXT}
             </button>
           </div>
         </form>

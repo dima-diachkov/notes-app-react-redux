@@ -1,51 +1,37 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNote } from '../actions/noteActions';
 import { Note } from '../types/types';
-import { formatTime } from '../utils';
+import EditNoteDialog from './CreateEditNoteDialog';
+import { addNote } from '../actions/noteActions';
 
-interface NoteFormProps {
-}
+interface NoteFormProps {}
 
 const NoteForm: React.FC<NoteFormProps> = () => {
-  const [content, setContent] = useState('');
-  const [category, setCategory] = useState('');
+  const [showEditDialog, setShowEditDialog] = useState(false);
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const dispatch = useDispatch();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const newNote: Note = {
-      id: Date.now(),
-      time: formatTime(new Date()),
-      content,
-      category,
-      archived: false,
-    };
-
+  const handleAddNote = (newNote: Note) => {
     dispatch(addNote(newNote));
-
-    setContent('');
-    setCategory('');
   };
 
+  const handleCloseEditDialog = () => {
+    setSelectedNote(null);
+    setShowEditDialog(false);
+  };
+
+  const addButton = <button key="add" onClick={() => setShowEditDialog(true)}>Add Note</button>;
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="content">Content:</label>
-        <input type="text" id="content" value={content} onChange={(e) => setContent(e.target.value)} />
-      </div>
-      <div>
-        <label htmlFor="category">Category:</label>
-        <select id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="">Select Category</option>
-          <option value="Task">Task</option>
-          <option value="Random Thought">Random Thought</option>
-          <option value="Idea">Idea</option>
-        </select>
-      </div>
-      <button type="submit">Add Note</button>
-    </form>
+    <div>
+      {addButton}
+      <EditNoteDialog
+        isOpen={showEditDialog}
+        onClose={handleCloseEditDialog}
+        initialNote={selectedNote}
+        onSave={handleAddNote}
+      />
+    </div>
   );
 };
 

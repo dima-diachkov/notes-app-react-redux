@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Table from './Table';
 import { useDispatch } from 'react-redux';
 import { Note } from '../types/types';
-import { removeNote, archiveNote, unarchiveNote } from '../actions/noteActions';
-import EditNoteDialog from './EditNoteDialog';
+import { removeNote, archiveNote, unarchiveNote, editNote, addNote } from '../actions/noteActions';
+import EditNoteDialog from './CreateEditNoteDialog';
+import NoteForm from './NoteForm';
 
 interface NoteTableProps {
   notes: Note[];
@@ -38,6 +39,14 @@ const NoteTable: React.FC<NoteTableProps> = ({ notes }) => {
     setShowEditDialog(false);
   };
 
+  const handleSaveNote = (newNote: Note) => {
+    if (selectedNote) {
+      dispatch(editNote(newNote));
+    } else {
+      dispatch(addNote(newNote));
+    }
+    handleCloseEditDialog();
+  };
   const editButton = (note: Note) => (
     <button key="edit" onClick={() => handleEditButtonClick(note)}>Edit</button>
   );
@@ -87,7 +96,7 @@ const NoteTable: React.FC<NoteTableProps> = ({ notes }) => {
         headers={['Time of Creation', 'Note Content', 'Note Category', 'Mentioned Dates', 'Actions']}
         data={activeNotesData}
       />
-
+      <NoteForm />
       <h2>Archived Notes</h2>
       <Table
         headers={['Time of Creation', 'Note Content', 'Note Category', 'Mentioned Dates', 'Actions']}
@@ -98,6 +107,7 @@ const NoteTable: React.FC<NoteTableProps> = ({ notes }) => {
         isOpen={showEditDialog}
         onClose={handleCloseEditDialog}
         initialNote={selectedNote}
+        onSave={handleSaveNote}
       />
     </div>
   );

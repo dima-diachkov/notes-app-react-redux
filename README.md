@@ -1,46 +1,57 @@
-# Getting Started with Create React App
+# Notes App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple note-taking app built with React and Redux, allowing users to create, edit, remove, and archive notes. The app features a user-friendly interface for managing notes efficiently.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Add a new note with content and category selection
+- Edit existing notes
+- Remove notes
+- Archive notes
+- Unarchive notes
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- Redux
+- Typescript
+- CSS
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+Follow the steps below to run the app locally:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
 
-### `npm run build`
+git clone https://github.com/dima-diachkov/notes-app-react-redux
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navigate to the project directory:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+cd notes-app-react-redux
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install the dependencies:
 
-### `npm run eject`
+yarn install
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Start the development server:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+yarn start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The app will be running at [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- To create a new note, click the "Add Note" button and fill in the content and category fields. Click "Save" to add the note.
+- To edit a note, click the "Edit" button next to the note you want to modify. Make the necessary changes and click "Save" to update the note.
+- To remove a note, click the "Remove" button next to the note you want to delete.
+- To archive a note, click the "Archive" button next to the note you want to move to the archived section.
+- To unarchive a note, click the "Unarchive" button next to the archived note you want to restore to the active section.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributing
+
+Contributions are welcome! If you find a bug or have an idea for an enhancement, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

@@ -1,8 +1,7 @@
 import React from 'react';
-import { SummaryState } from '../../types/types';
-import Table from '../Table';
-import { NOTE_CATEGORIES, NOTE_TABLE_HEADERS } from '../../constants';
-import './summaryTable.css'
+import { SummaryState } from '../types/types';
+import Table from './Table';
+import { NOTE_CATEGORIES, NOTE_TABLE_HEADERS } from '../constants';
 
 interface SummaryTableProps {
   summaryData: SummaryState;

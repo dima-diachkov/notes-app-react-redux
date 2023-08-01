@@ -61,6 +61,8 @@ const CreateEditNoteDialog: React.FC<CreateEditNoteDialogProps> = ({
         archived: false,
       };
       onSave(newNote);
+      setContent('');
+      setCategory('');
     }
 
     onClose();

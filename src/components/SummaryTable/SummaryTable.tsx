@@ -1,13 +1,14 @@
 import React from 'react';
-import { SummaryState } from '../types/types';
-import Table from './Table';
-import { NOTE_CATEGORIES, NOTE_TABLE_HEADERS } from '../constants';
+import { SummaryState } from '../../types/types';
+import Table from '../Table';
+import { NOTE_CATEGORIES, NOTE_TABLE_HEADERS } from '../../constants';
+import './summaryTable.css'
 
 interface SummaryTableProps {
   summaryData: SummaryState;
 }
 
-const SummaryTable: React.FC<SummaryTableProps> = ({ summaryData }) => {
+export const SummaryTable: React.FC<SummaryTableProps> = ({ summaryData }) => {
   const tableHeaders = NOTE_TABLE_HEADERS;
 
   const tableData = NOTE_CATEGORIES.map((category) => ({
@@ -23,5 +24,3 @@ const SummaryTable: React.FC<SummaryTableProps> = ({ summaryData }) => {
     </div>
   );
 };
-
-export default SummaryTable;

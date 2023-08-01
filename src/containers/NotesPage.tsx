@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../types/types';
 import NoteTable from '../components/NoteTable';
-import SummaryTable from '../components/SummaryTable';
 import { updateSummary } from '../actions/noteActions';
+import { SummaryTable } from '../components/SummaryTable';
 
 const NotesPage: React.FC = () => {
   const notes = useSelector((state: RootState) => state.notesState.notes);
@@ -15,11 +15,15 @@ const NotesPage: React.FC = () => {
   }, [notes, dispatch]);
 
   return (
-    <div className="app-container">
-      <h1>Notes App</h1>
-      <div className="note-page-content">
-        <NoteTable notes={notes} />
-        <SummaryTable summaryData={summaryData} />
+    <div className="max-w-6xl mx-auto my-0">
+      <h1 className="text-center mt-4 mb-0 text-3xl font-bold">Notes App</h1>
+      <div className="flex flex-col justify-between items-stretch p-8 min-h-screen">
+        <div>
+          <NoteTable notes={notes} />
+        </div>
+        <div>
+          <SummaryTable summaryData={summaryData} />
+        </div>
       </div>
     </div>
   );

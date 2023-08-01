@@ -67,11 +67,11 @@ const CreateEditNoteDialog: React.FC<CreateEditNoteDialogProps> = ({
   };
 
   return isOpen ? (
-    <div className="modal-overlay">
-      <div className="modal">
-        <div className="modal-header">
+    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
+      <div className="bg-white p-8 rounded-md shadow-md w-96">
+        <div className="flex justify-between items-center mb-4">
           <h2>{initialNote ? STRINGS.EDIT_NOTE_TITLE : STRINGS.CREATE_NOTE_TITLE}</h2>
-          <button className="modal-close" onClick={onClose}>
+          <button className="cursor-pointer text-gray-600 w-8 h-8 border-none bg-transparent hover:text-gray-500" onClick={onClose}>
             &times;
           </button>
         </div>
@@ -83,6 +83,7 @@ const CreateEditNoteDialog: React.FC<CreateEditNoteDialogProps> = ({
               id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
+              className="w-full p-2 text-sm border border-gray-400 rounded-md mb-4"
             />
           </div>
           <div>
@@ -91,6 +92,7 @@ const CreateEditNoteDialog: React.FC<CreateEditNoteDialogProps> = ({
               id="category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
+              className="w-full p-2 text-sm border border-gray-400 rounded-md mb-4"
             >
               <option value="">Select Category</option>
               <option value="Task">Task</option>
@@ -98,9 +100,9 @@ const CreateEditNoteDialog: React.FC<CreateEditNoteDialogProps> = ({
               <option value="Idea">Idea</option>
             </select>
           </div>
-          <div className="modal-footer">
-            <button type="submit">{initialNote ? STRINGS.SAVE_BUTTON_TEXT : STRINGS.ADD_NOTE_BUTTON_TEXT}</button>
-            <button type="button" onClick={onClose}>
+          <div className="flex justify-end mt-4">
+            <button>{initialNote ? STRINGS.SAVE_BUTTON_TEXT : STRINGS.ADD_NOTE_BUTTON_TEXT}</button>
+            <button onClick={onClose}>
               {STRINGS.CANCEL_BUTTON_TEXT}
             </button>
           </div>

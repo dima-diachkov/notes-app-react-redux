@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Table from '../components/Table';
 
 const meta = {
-  title: 'Example/Table',
+  title: 'Notes/Table',
   component: Table,
   tags: ['autodocs'],
   argTypes: {

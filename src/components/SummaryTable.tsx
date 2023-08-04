@@ -8,6 +8,7 @@ interface SummaryTableProps {
 }
 
 export const SummaryTable: React.FC<SummaryTableProps> = ({ summaryData }) => {
+  console.log(summaryData);
   const tableHeaders = NOTE_TABLE_HEADERS;
 
   const tableData = NOTE_CATEGORIES.map((category) => ({

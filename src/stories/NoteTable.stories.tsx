@@ -7,7 +7,7 @@ import defaultNotes from '../mocks/defaultNotes';
 const notes = [...defaultNotes];
 
 const meta = {
-    title: 'Example/NoteTable',
+    title: 'Notes/NoteTable',
     component: NoteTable,
     tags: ['autodocs'],
     decorators: [(story) => <Provider store={store}>{story()}</Provider>],

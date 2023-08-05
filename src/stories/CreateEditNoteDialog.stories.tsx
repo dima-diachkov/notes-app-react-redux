@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import defaultNotes from '../mocks/defaultNotes';
 import CreateEditNoteDialog from '../components/CreateEditNoteDialog';
-import { Note } from '../types/types';
 import { Provider } from 'react-redux';
 import store from '../store';
 
@@ -13,20 +12,32 @@ const meta = {
     tags: ['autodocs'],
     decorators: [(story) => <Provider store={store}>{story()}</Provider>],
     argTypes: {
- 
+        isOpen: { control: 'boolean' },
+        onClose: { action: 'onClose' },
+        initialNote: { control: 'object' },
+        onSave: { action: 'onSave' },
     },
 } satisfies Meta<typeof CreateEditNoteDialog>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Create: Story = {
+    args: {
+        isOpen: true,
+        onClose: () => { },
+        initialNote: null,
+        onSave: () => { },
+    },
+};
+
+export const Edit: Story = {
     args: {
         isOpen: true,
         onClose: () => { },
         initialNote: {
-            id: 23,
-            time: '12/12/1212',
+            id: 42,
+            time: '42/42/2042',
             content: 'Note',
             category: 'Task',
             archived: false,

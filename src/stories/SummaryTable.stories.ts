@@ -9,10 +9,7 @@ const meta = {
     component: SummaryTable,
     tags: ['autodocs'],
     argTypes: {
-        summaryData: {
-            activeCategories: { task: 'number', idea: 'number', random_thoughts: 'number' },
-            archivedCategories: { task: 'number', idea: 'number', random_thoughts: 'number' }
-        }
+        summaryData: { control: 'object' },
     },
 } satisfies Meta<typeof SummaryTable>;
 
@@ -22,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
     args: {
         summaryData: {
-            activeCategories: { task: 2 },
+            activeCategories: { task: 2, idea: 3 },
             archivedCategories: { task: 2 }
         }
     },

@@ -12,7 +12,7 @@ const meta = {
     tags: ['autodocs'],
     decorators: [(story) => <Provider store={store}>{story()}</Provider>],
     argTypes: {
-        notes
+        notes: { control: { type: 'object' } },
     },
 } satisfies Meta<typeof NoteTable>;
 
